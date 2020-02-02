@@ -4,7 +4,14 @@ const server = express();
 
 server.use(express.json());
 
+
 const projects = [{ id: "1", title: "Rocketseat", tasks: ["Fazer um serviço para cadastro de projetos"] }]
+
+function logRequests(req, res, next) {
+  console.count("Req. Num");
+  return next();
+}
+server.use(logRequests);
 
 function isProjectExist(req, res, next) {
   const id = req.params.id + "";
